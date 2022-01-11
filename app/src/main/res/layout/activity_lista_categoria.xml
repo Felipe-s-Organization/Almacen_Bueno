@@ -57,8 +57,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rCategoria"
-        android:layout_width="339dp"
-        android:layout_height="501dp"
+        android:layout_width="348dp"
+        android:layout_height="577dp"
         android:layout_marginTop="16dp"
         android:theme="@style/Theme.Almacen_2"
         app:layout_constraintEnd_toEndOf="parent"

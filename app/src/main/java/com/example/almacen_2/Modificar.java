@@ -132,9 +132,11 @@ public class Modificar extends AppCompatActivity implements View.OnClickListener
                 dbTienda.child(getIntent().getExtras().getString("id")).setValue(producto);
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                finish();
             case R.id.btnCancelar:
                 Intent intent1 = new Intent(this, MainActivity.class);
                 startActivity(intent1);
+                finish();
             default:
         }
     }

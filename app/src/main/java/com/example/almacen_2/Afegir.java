@@ -112,17 +112,19 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
                 Producto producto = new Producto();
                 producto.setNom(edNom.getText().toString());
                 producto.setCategoria(categoriaSelect);
-                producto.setCodi(edCodi.getText().toString());
+                producto.setCodi("");
                 producto.setCajas(Integer.parseInt(edCajas.getText().toString()));
                 producto.setUnidades(Integer.parseInt(edUnidades.getText().toString()));
                 producto.setCantidad(Integer.parseInt(edCantidad.getText().toString()));
                 producto.setPrecio(Double.parseDouble(edPrecio.getText().toString()));
-                dbTienda.child(edCodi.getText().toString()).setValue(producto);
+                dbTienda.child(edNom.getText().toString()).setValue(producto);
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                finish();
             case R.id.btnCancel:
                 Intent intent1 = new Intent(this, MainActivity.class);
                 startActivity(intent1);
+                finish();
             default:
         }
     }
