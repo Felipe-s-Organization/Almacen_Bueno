@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "356056986534",
+    "firebase_url": "https://fruteria-teo-default-rtdb.firebaseio.com",
+    "project_id": "fruteria-teo",
+    "storage_bucket": "fruteria-teo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356056986534:android:3d65d4e0ae255124cad567",
+        "android_client_info": {
+          "package_name": "com.example.almacen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356056986534-nin3ueggm61ma7f9fikovril7vg95hl3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZuWg0lxaNejQ4khOF2N8huDJ9HfJ5hcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356056986534-nin3ueggm61ma7f9fikovril7vg95hl3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356056986534:android:a9055cc7a8ccea99cad567",
+        "android_client_info": {
+          "package_name": "com.example.almacen_2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356056986534-nin3ueggm61ma7f9fikovril7vg95hl3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZuWg0lxaNejQ4khOF2N8huDJ9HfJ5hcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356056986534-nin3ueggm61ma7f9fikovril7vg95hl3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
