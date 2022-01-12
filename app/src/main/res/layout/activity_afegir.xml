@@ -13,18 +13,19 @@
         android:text="Unidades:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toEndOf="@+id/etCajas"
-        app:layout_constraintTop_toBottomOf="@+id/spinCategory"
-        app:layout_constraintVertical_bias="0.107" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.133" />
 
     <EditText
         android:id="@+id/etBarres"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:background="@android:drawable/edit_text"
+        android:backgroundTint="@color/lima_light"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.194"
@@ -43,7 +44,7 @@
         app:layout_constraintHorizontal_bias="0.13"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUC"
-        app:layout_constraintVertical_bias="0.14" />
+        app:layout_constraintVertical_bias="0.101" />
 
     <TextView
         android:id="@+id/tvProducto"
@@ -59,17 +60,18 @@
 
     <EditText
         android:id="@+id/etPreu"
-        android:layout_width="132dp"
-        android:layout_height="50dp"
+        android:layout_width="102dp"
+        android:layout_height="54dp"
         android:background="@android:drawable/edit_text"
+        android:backgroundTint="@color/lima_light"
         android:ems="10"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="@+id/tvPVP"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.124"
+        app:layout_constraintHorizontal_bias="0.025"
         app:layout_constraintStart_toEndOf="@+id/tvPVP"
         app:layout_constraintTop_toTopOf="@+id/tvPVP"
-        app:layout_constraintVertical_bias="0.516"
+        app:layout_constraintVertical_bias="0.514"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -82,7 +84,7 @@
         app:layout_constraintHorizontal_bias="0.307"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etBarres"
-        app:layout_constraintVertical_bias="0.22" />
+        app:layout_constraintVertical_bias="0.255" />
 
     <TextView
         android:id="@+id/textView"
@@ -100,22 +102,25 @@
 
     <Button
         android:id="@+id/btnEscanear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/teal_700"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
+        android:background="@color/lima_dark"
+        android:onClick="Escaner"
         android:text="Escanear"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintHorizontal_bias="0.391"
         app:layout_constraintStart_toEndOf="@+id/etBarres"
         app:layout_constraintTop_toBottomOf="@+id/tvBarres"
-        app:layout_constraintVertical_bias="0.052" />
+        app:layout_constraintVertical_bias="0.051" />
 
     <EditText
         android:id="@+id/etUC"
         android:layout_width="132dp"
         android:layout_height="48dp"
         android:background="@android:drawable/edit_text"
+        android:backgroundTint="@color/lima_light"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -130,34 +135,37 @@
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/teal_700"
+        android:background="@color/lima_dark"
         android:text="Guardar"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.241"
+        app:layout_constraintHorizontal_bias="0.281"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPVP"
-        app:layout_constraintVertical_bias="0.472" />
+        app:layout_constraintVertical_bias="0.481" />
 
     <Button
         android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:background="@color/teal_700"
+        android:background="@color/lima_dark"
         android:text="Cancelar"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.01"
+        app:layout_constraintHorizontal_bias="0.012"
         app:layout_constraintStart_toEndOf="@+id/btnSave"
         app:layout_constraintTop_toBottomOf="@+id/tvPVP"
-        app:layout_constraintVertical_bias="0.472" />
+        app:layout_constraintVertical_bias="0.481" />
 
     <EditText
         android:id="@+id/etProducte"
         android:layout_width="217dp"
         android:layout_height="48dp"
         android:background="@android:drawable/edit_text"
+        android:backgroundTint="@color/lima_light"
         android:ems="10"
         android:inputType="textCapSentences"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -173,14 +181,15 @@
         android:layout_width="87dp"
         android:layout_height="48dp"
         android:background="@android:drawable/edit_text"
+        android:backgroundTint="@color/lima_light"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintHorizontal_bias="0.216"
         app:layout_constraintStart_toEndOf="@+id/tvUnidades"
-        app:layout_constraintTop_toBottomOf="@+id/spinCategory"
-        app:layout_constraintVertical_bias="0.078"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.107"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -199,16 +208,16 @@
         android:id="@+id/etCajas"
         android:layout_width="87dp"
         android:layout_height="48dp"
-        android:layout_marginTop="35dp"
         android:background="@android:drawable/edit_text"
+        android:backgroundTint="@color/lima_light"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintHorizontal_bias="0.06"
         app:layout_constraintStart_toEndOf="@+id/tvCajas"
-        app:layout_constraintTop_toBottomOf="@+id/spinCategory"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.107"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Spinner
@@ -216,6 +225,7 @@
         android:layout_width="220dp"
         android:layout_height="48dp"
         android:background="@android:drawable/edit_text"
+        android:backgroundTint="@color/lima_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.272"

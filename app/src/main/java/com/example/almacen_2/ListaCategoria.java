@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -67,9 +68,16 @@ public class ListaCategoria extends AppCompatActivity implements ChildEventListe
         switch (v.getId()){
             case R.id.añadir:
                 Categoria categoria = new Categoria();
-                categoria.setNom(nomCategoria.getText().toString());
-                dbCategorias.child(nomCategoria.getText().toString()).setValue(categoria);
-                nomCategoria.setText("");
+                String nombre = nomCategoria.getText().toString();
+                if (nombre.equals("")){
+                    Toast toast = Toast.makeText(this,"No se puede añadir la categoria",Toast.LENGTH_SHORT);
+                    toast.show();
+                }else {
+                    categoria.setNom(nombre);
+                    dbCategorias.child(nombre).setValue(categoria);
+                    nomCategoria.setText("");
+                }
+
             default:
         }
     }

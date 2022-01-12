@@ -1,6 +1,7 @@
 package com.example.almacen_2;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -113,12 +115,18 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
                     context.startActivity(intent2);
                     return true;
                 case R.id.eliminarProducto:
-                    Producto s = listaProductos.get(pos);
-                    databaseReference= FirebaseDatabase.getInstance().getReference().child("productos");
-                    databaseReference.child(s.getCodi()).removeValue();
-                    Toast toast = Toast.makeText(context,"Producto eliminado",Toast.LENGTH_SHORT);
-                    toast.show();
-
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setMessage("Seguro que quieres eliminar el producto?")
+                            .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Producto s = listaProductos.get(pos);
+                                    databaseReference= FirebaseDatabase.getInstance().getReference().child("productos");
+                                    databaseReference.child(s.getCodi()).removeValue();
+                                    Toast toast = Toast.makeText(context,"Producto eliminado",Toast.LENGTH_SHORT);
+                                    toast.show();
+                                }
+                            }).setNegativeButton("Cancelar", null).show();
                 default:
             }
             return false;
