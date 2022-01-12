@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Modificar extends AppCompatActivity implements View.OnClickListener, ChildEventListener, ValueEventListener {
 
-    TextView tvProducto;
+    EditText tvProducto;
     EditText edCajas;
     EditText edUnidades;
     EditText edPrecio;

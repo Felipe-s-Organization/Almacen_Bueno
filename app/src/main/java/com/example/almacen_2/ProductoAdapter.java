@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
@@ -115,6 +116,8 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
                     Producto s = listaProductos.get(pos);
                     databaseReference= FirebaseDatabase.getInstance().getReference().child("productos");
                     databaseReference.child(s.getCodi()).removeValue();
+                    Toast toast = Toast.makeText(context,"Producto eliminado",Toast.LENGTH_SHORT);
+                    toast.show();
 
                 default:
             }

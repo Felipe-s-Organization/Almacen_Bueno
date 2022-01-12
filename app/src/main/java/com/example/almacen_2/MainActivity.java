@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
     private List<Producto> productos;
     public RecyclerView viewLista;
     DatabaseReference dbProductos;
-    String categoria;
+    String categoria ="";
 
     ProductoAdapter adapter;
 
@@ -43,6 +43,11 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        try {
+            categoria = getIntent().getExtras().getString("categoria");
+        }catch (Exception e){
+
+        }
 
         dbProductos = FirebaseDatabase.getInstance().getReference().child("productos");
         dbProductos.addChildEventListener(this);
@@ -75,10 +80,17 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
     @Override
     public boolean onOptionsItemSelected(MenuItem opcion_menu){
         int id=opcion_menu.getItemId();
-
-        if (id==R.id.listaCategoria){
-            Intent intent = new Intent(this, ListaCategoria.class);
-            startActivity(intent);
+        Intent intent;
+        switch (id){
+            case R.id.listaCategoria:
+                intent = new Intent(this, ListaCategoria.class);
+                startActivity(intent);
+                break;
+            case R.id.todosProd:
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
+            default:
         }
 
         return super.onOptionsItemSelected(opcion_menu);
@@ -127,13 +139,22 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
                     Integer.parseInt(element.child("cantidad").getValue().toString()),
                     Double.parseDouble(element.child("precio").getValue().toString())
             );
+            if (producto.getCategoria().equals(categoria)) {
+                productos.add(producto);
+                Collections.sort(productos, new Comparator<Producto>() {
+                    public int compare(Producto obj1, Producto obj2) {
+                        return obj1.getNom().compareTo(obj2.getNom());
+                    }
+                });
+            }else if (categoria.equals("")){
+                productos.add(producto);
+                Collections.sort(productos, new Comparator<Producto>() {
+                    public int compare(Producto obj1, Producto obj2) {
+                        return obj1.getNom().compareTo(obj2.getNom());
+                    }
+                });
+            }
 
-            productos.add(producto);
-            Collections.sort(productos, new Comparator<Producto>() {
-                public int compare(Producto obj1, Producto obj2) {
-                    return obj1.getNom().compareTo(obj2.getNom());
-                }
-            });
 
         }
         viewLista.getAdapter().notifyDataSetChanged();
@@ -143,5 +164,13 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
     @Override
     public void onCancelled(@NonNull DatabaseError error) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent home = new Intent(this, MainActivity.class);
+        startActivity(home);
+        moveTaskToBack(true);
+        finish();
     }
 }

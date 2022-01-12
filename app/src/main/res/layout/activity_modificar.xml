@@ -10,6 +10,7 @@
         android:id="@+id/btnSumar"
         android:layout_width="62dp"
         android:layout_height="41dp"
+        android:backgroundTint="@color/teal_700"
         android:text="+"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,25 +38,26 @@
         android:id="@+id/btnVacio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_500"
         android:text="Sin existencias"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvProducto2"
-        app:layout_constraintVertical_bias="0.532" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRestar"
+        app:layout_constraintVertical_bias="0.125" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="104dp"
         android:text="UNIDADES"
         android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.592"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.217" />
 
@@ -63,6 +65,7 @@
         android:id="@+id/edUnidades"
         android:layout_width="63dp"
         android:layout_height="64dp"
+        android:background="@android:drawable/edit_text"
         android:ems="10"
         android:inputType="number"
         android:textAlignment="center"
@@ -76,24 +79,11 @@
         app:layout_constraintVertical_bias="0.027"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <TextView
-        android:id="@+id/tvProducto2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="#000000"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.065" />
-
     <Button
         android:id="@+id/btnRestar"
         android:layout_width="62dp"
         android:layout_height="41dp"
+        android:backgroundTint="@color/teal_200"
         android:text="-"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -107,6 +97,7 @@
         android:id="@+id/edCajas"
         android:layout_width="63dp"
         android:layout_height="64dp"
+        android:background="@android:drawable/edit_text"
         android:ems="10"
         android:inputType="number"
         android:textAlignment="center"
@@ -123,6 +114,7 @@
         android:id="@+id/btnSumar2"
         android:layout_width="62dp"
         android:layout_height="41dp"
+        android:backgroundTint="@color/teal_700"
         android:text="+"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -137,6 +129,7 @@
         android:layout_width="62dp"
         android:layout_height="41dp"
         android:layout_marginTop="12dp"
+        android:backgroundTint="@color/teal_200"
         android:text="-"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -150,7 +143,7 @@
         android:id="@+id/edPrecio"
         android:layout_width="95dp"
         android:layout_height="79dp"
-        android:layout_marginEnd="156dp"
+        android:background="@android:drawable/edit_text"
         android:ems="10"
         android:inputType="numberDecimal"
         android:textAlignment="center"
@@ -158,15 +151,16 @@
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/btnVacio"
-        app:layout_constraintVertical_bias="0.166" />
+        app:layout_constraintVertical_bias="0.156" />
 
     <Button
         android:id="@+id/btnGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/teal_700"
         android:text="Guardar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -192,6 +186,7 @@
         android:id="@+id/btnCancelar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/teal_700"
         android:text="Cancelar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -199,4 +194,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edPrecio"
         app:layout_constraintVertical_bias="0.264" />
+
+    <EditText
+        android:id="@+id/tvProducto2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/edit_text"
+        android:ems="10"
+        android:inputType="textCapSentences"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.071" />
 </androidx.constraintlayout.widget.ConstraintLayout>

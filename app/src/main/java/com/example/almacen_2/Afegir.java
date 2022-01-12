@@ -2,6 +2,7 @@ package com.example.almacen_2;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -110,14 +112,19 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
         switch (v.getId()){
             case R.id.btnSave:
                 Producto producto = new Producto();
-                producto.setNom(edNom.getText().toString());
-                producto.setCategoria(categoriaSelect);
-                producto.setCodi("");
-                producto.setCajas(Integer.parseInt(edCajas.getText().toString()));
-                producto.setUnidades(Integer.parseInt(edUnidades.getText().toString()));
-                producto.setCantidad(Integer.parseInt(edCantidad.getText().toString()));
-                producto.setPrecio(Double.parseDouble(edPrecio.getText().toString()));
-                dbTienda.child(edNom.getText().toString()).setValue(producto);
+                try {
+                    producto.setNom(edNom.getText().toString());
+                    producto.setCategoria(categoriaSelect);
+                    producto.setCodi("");
+                    producto.setCajas(Integer.parseInt(edCajas.getText().toString()));
+                    producto.setUnidades(Integer.parseInt(edUnidades.getText().toString()));
+                    producto.setCantidad(Integer.parseInt(edCantidad.getText().toString()));
+                    producto.setPrecio(Double.parseDouble(edPrecio.getText().toString()));
+                    dbTienda.child(edNom.getText().toString()).setValue(producto);
+                }catch (Exception e){
+                    Toast toast = Toast.makeText(this,"No se ha podido guardar el producto", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();

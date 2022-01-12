@@ -31,21 +31,35 @@ public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaAdapter.View
         this.databaseReference = databaseReference;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public TextView tvNom;
 
         public ViewHolder (View itemView){
             super(itemView);
             tvNom = itemView.findViewById(R.id.tvNom);
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
+            Categoria item = listaCategorias.get(position);
+            String nombre = item.getNom();
+            Intent intent = new Intent(context, MainActivity.class);
+            intent.putExtra("categoria", nombre);
+            context.startActivity(intent);
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            int position = getAdapterPosition();
             mostraPopupMenu(v,position);
+            return false;
         }
     }
+
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -90,7 +104,6 @@ public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaAdapter.View
                     Categoria s = listaCategorias.get(pos);
                     databaseReference= FirebaseDatabase.getInstance().getReference().child("categorias");
                     databaseReference.child(s.getNom()).removeValue();
-
                 default:
             }
             return false;
