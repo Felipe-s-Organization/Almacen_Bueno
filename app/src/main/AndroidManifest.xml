@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Almacen_2">
         <activity
             android:name=".Escanear"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".ListaCategoria"
             android:exported="false" />

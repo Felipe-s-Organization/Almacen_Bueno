@@ -60,18 +60,19 @@
 
     <EditText
         android:id="@+id/etPreu"
-        android:layout_width="102dp"
-        android:layout_height="54dp"
+        android:layout_width="77dp"
+        android:layout_height="55dp"
         android:background="@android:drawable/edit_text"
         android:backgroundTint="@color/lima_light"
         android:ems="10"
         android:inputType="numberDecimal"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/tvPVP"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toEndOf="@+id/tvPVP"
         app:layout_constraintTop_toTopOf="@+id/tvPVP"
-        app:layout_constraintVertical_bias="0.514"
+        app:layout_constraintVertical_bias="0.527"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -81,7 +82,7 @@
         android:text="P.V.P:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.307"
+        app:layout_constraintHorizontal_bias="0.334"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etBarres"
         app:layout_constraintVertical_bias="0.255" />
@@ -105,7 +106,6 @@
         android:layout_width="88dp"
         android:layout_height="48dp"
         android:background="@color/lima_dark"
-        android:onClick="Escaner"
         android:text="Escanear"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -256,4 +256,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCajas"
         app:layout_constraintVertical_bias="0.158" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="€"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintStart_toEndOf="@+id/etPreu"
+        app:layout_constraintTop_toBottomOf="@+id/etBarres"
+        app:layout_constraintVertical_bias="0.237" />
 </androidx.constraintlayout.widget.ConstraintLayout>
