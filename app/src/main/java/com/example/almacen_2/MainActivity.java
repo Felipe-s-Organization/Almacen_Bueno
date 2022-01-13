@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -74,7 +75,34 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
         // Forma 1: utilitzant el main.xml
         //Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu2, menu2);
-        return true;
+
+        MenuItem search = menu2.findItem(R.id.searchView);
+        SearchView searchView = (SearchView) search.getActionView();
+        searchView.setQueryHint("Nombre del producto");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return true;
+            }
+        });
+        return super.onCreateOptionsMenu(menu2);
+    }
+
+    private void filter(String newText) {
+        List<Producto> listaFiltrada = new ArrayList<>();
+        for (Producto item : productos){
+            if (item.getNom().toLowerCase().contains(newText.toLowerCase())){
+                listaFiltrada.add(item);
+            }
+        }
+        adapter.filterList(listaFiltrada);
     }
 
     @Override

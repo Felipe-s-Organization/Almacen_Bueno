@@ -33,7 +33,8 @@
         app:layout_constraintHorizontal_bias="0.116"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.031" />
+        app:layout_constraintVertical_bias="0.031"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView7"
@@ -58,7 +59,8 @@
         app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toEndOf="@+id/nomCategoria"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.034" />
+        app:layout_constraintVertical_bias="0.034"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rCategoria"

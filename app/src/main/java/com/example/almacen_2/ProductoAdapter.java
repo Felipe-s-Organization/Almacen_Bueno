@@ -133,5 +133,9 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
         }
     }
 
+    public void filterList(List<Producto> listaFiltrada){
+        listaProductos = listaFiltrada;
+        notifyDataSetChanged();
+    }
 
 }

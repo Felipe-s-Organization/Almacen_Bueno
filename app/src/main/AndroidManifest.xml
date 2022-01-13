@@ -14,10 +14,12 @@
         android:theme="@style/Theme.Almacen_2">
         <activity
             android:name=".Escanear"
-            android:exported="false"/>
+            android:exported="false"
+            android:label="Escaner"/>
         <activity
             android:name=".ListaCategoria"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Categorias"/>
         <activity
             android:name=".Afegir"
             android:exported="false" />
