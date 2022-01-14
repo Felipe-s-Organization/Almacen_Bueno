@@ -13,14 +13,18 @@
         android:showDividers="middle|beginning|end">
 
         <LinearLayout
-            android:layout_width="258dp"
+            android:layout_width="246dp"
             android:layout_height="match_parent"
+            android:background="@drawable/back"
+            android:divider="@drawable/back"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvNom"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:text="Nom"
                 android:textColor="#000000"
                 android:textSize="30sp"
@@ -35,6 +39,7 @@
                 <LinearLayout
                     android:layout_width="123dp"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -51,7 +56,7 @@
 
                         <TextView
                             android:id="@+id/tvNumCajas"
-                            android:layout_width="wrap_content"
+                            android:layout_width="77dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center_vertical"
@@ -63,8 +68,9 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="123dp"
                     android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -81,7 +87,7 @@
 
                         <TextView
                             android:id="@+id/tvNumUnidades"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center_vertical"
@@ -98,6 +104,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/back"
             android:orientation="vertical">
 
             <TextView
@@ -119,6 +126,8 @@
                     android:id="@+id/tvPrecio"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:autoText="false"
                     android:gravity="top"
                     android:text="TextView"
@@ -130,4 +139,5 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>

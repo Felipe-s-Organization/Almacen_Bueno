@@ -47,7 +47,6 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
 
     DatabaseReference dbTienda;
     DatabaseReference dbCategorias;
-    private ZXingScannerView vistaScanner;
 
     private static final int CODIGO_INTENT = 2;
 
@@ -83,6 +82,7 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
         loadCaregoria();
     }
 
+    //Carga la lista de categorias en el spinner para poder selecionarla
     public void loadCaregoria(){
         final List<Categoria> categorias = new ArrayList<>();
         dbCategorias.addListenerForSingleValueEvent(new ValueEventListener() {
