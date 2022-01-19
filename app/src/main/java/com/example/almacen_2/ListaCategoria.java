@@ -66,9 +66,11 @@ public class ListaCategoria extends AppCompatActivity implements ChildEventListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            //Creo la accion que hace el boton añadir
             case R.id.añadir:
                 Categoria categoria = new Categoria();
                 String nombre = nomCategoria.getText().toString();
+                //Si accidentalmente le dan al botont comprueba el EditText, si esta vacio crea un toast
                 if (nombre.equals("")){
                     Toast toast = Toast.makeText(this,"No se puede añadir la categoria",Toast.LENGTH_SHORT);
                     toast.show();
@@ -77,7 +79,6 @@ public class ListaCategoria extends AppCompatActivity implements ChildEventListe
                     dbCategorias.child(nombre).setValue(categoria);
                     nomCategoria.setText("");
                 }
-
             default:
         }
     }
@@ -110,15 +111,15 @@ public class ListaCategoria extends AppCompatActivity implements ChildEventListe
             Categoria categoria = new Categoria(
                     element.getKey()
             );
-
             categorias.add(categoria);
+            //Ordeno el recycleView para buscar mejor
             Collections.sort(categorias, new Comparator<Categoria>() {
                 public int compare(Categoria obj1, Categoria obj2) {
                     return obj1.getNom().compareTo(obj2.getNom());
                 }
             });
-
         }
+        //Se actualiza el recycleView
         listaCategorias.getAdapter().notifyDataSetChanged();
     }
 

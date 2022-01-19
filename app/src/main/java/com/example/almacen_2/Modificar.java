@@ -79,7 +79,6 @@ public class Modificar extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         Integer cantidad = getIntent().getExtras().getInt("cantidad");
-        System.out.print(cantidad);
         Integer uC;
         Integer suma;
         Integer resta;
@@ -118,7 +117,6 @@ public class Modificar extends AppCompatActivity implements View.OnClickListener
                 edCajas.setText("0");
                 break;
             case R.id.btnGuardar:
-                String descripcion = getIntent().getExtras().getString("descripcion");
                 String categoria = getIntent().getExtras().getString("categoria");
 
                 Producto producto = new Producto();

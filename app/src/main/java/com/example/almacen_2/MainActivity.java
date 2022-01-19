@@ -169,24 +169,25 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
             );
             if (producto.getCategoria().equals(categoria)) {
                 productos.add(producto);
-                Collections.sort(productos, new Comparator<Producto>() {
-                    public int compare(Producto obj1, Producto obj2) {
-                        return obj1.getNom().compareTo(obj2.getNom());
-                    }
-                });
+                productos = ordenar(productos);
             }else if (categoria.equals("")){
                 productos.add(producto);
-                Collections.sort(productos, new Comparator<Producto>() {
-                    public int compare(Producto obj1, Producto obj2) {
-                        return obj1.getNom().compareTo(obj2.getNom());
-                    }
-                });
+                productos = ordenar(productos);
             }
 
 
         }
         viewLista.getAdapter().notifyDataSetChanged();
 
+    }
+
+    public List<Producto> ordenar (List<Producto> lista){
+        Collections.sort(lista, new Comparator<Producto>() {
+            public int compare(Producto obj1, Producto obj2) {
+                return obj1.getNom().compareTo(obj2.getNom());
+            }
+        });
+        return lista;
     }
 
     @Override

@@ -109,7 +109,6 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
 
             }
         });
-
     }
 
     @Override

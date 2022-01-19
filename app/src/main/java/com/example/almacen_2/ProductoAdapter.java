@@ -36,11 +36,13 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
         listaBuscada.addAll(listaProductos);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
         public TextView tvNom;
         public TextView tvNumCajas;
         public TextView tvCantidad;
         public TextView tvPrecio;
+
+        int position = getAdapterPosition();
 
         public ViewHolder (View itemView){
             super(itemView);
@@ -49,12 +51,31 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
             tvCantidad = itemView.findViewById(R.id.tvNumUnidades);
             tvPrecio = itemView.findViewById(R.id.tvPrecio);
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
+            Producto producto;
+            producto = listaProductos.get(position);
+            Intent intent2 = new Intent(context, Modificar.class);
+            intent2.putExtra("id",  producto.getCodi() );
+            intent2.putExtra("nom",  producto.getNom() );
+            intent2.putExtra("categoria", producto.getCategoria());
+            intent2.putExtra("cajas",  producto.getCajas() );
+            intent2.putExtra("unidades",  producto.getUnidades() );
+            intent2.putExtra("precio",  producto.getPrecio() );
+            intent2.putExtra("cantidad", producto.getCantidad());
+            context.startActivity(intent2);
+        }
+
+
+        @Override
+        public boolean onLongClick(View v) {
+            int position = getAdapterPosition();
             mostraPopupMenu(v,position);
+            return false;
         }
     }
 
@@ -102,18 +123,6 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
             // Implementar cada opció del menú
             Producto producto;
             switch (menuItem.getItemId()) {
-                case R.id.modificarProducto:
-                    producto = listaProductos.get(pos);
-                    Intent intent2 = new Intent(context, Modificar.class);
-                    intent2.putExtra("id",  producto.getCodi() );
-                    intent2.putExtra("nom",  producto.getNom() );
-                    intent2.putExtra("categoria", producto.getCategoria());
-                    intent2.putExtra("cajas",  producto.getCajas() );
-                    intent2.putExtra("unidades",  producto.getUnidades() );
-                    intent2.putExtra("precio",  producto.getPrecio() );
-                    intent2.putExtra("cantidad", producto.getCantidad());
-                    context.startActivity(intent2);
-                    return true;
                 case R.id.eliminarProducto:
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setMessage("Seguro que quieres eliminar el producto?")

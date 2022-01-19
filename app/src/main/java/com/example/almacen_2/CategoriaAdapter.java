@@ -98,7 +98,6 @@ public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaAdapter.View
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             // Implementar cada opció del menú
-            Producto producto;
             switch (menuItem.getItemId()) {
                 case R.id.eliminarCategoria:
                     Categoria s = listaCategorias.get(pos);

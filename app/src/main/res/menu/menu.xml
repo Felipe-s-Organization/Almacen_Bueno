@@ -3,10 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/modificarProducto"
-        android:icon="@android:drawable/ic_menu_edit"
-        android:title="modificar" />
-    <item
         android:id="@+id/eliminarProducto"
         android:icon="@android:drawable/ic_menu_delete"
         android:title="eliminar" />
