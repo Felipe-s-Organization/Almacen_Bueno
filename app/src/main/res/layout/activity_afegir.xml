@@ -117,8 +117,8 @@
 
     <EditText
         android:id="@+id/etUC"
-        android:layout_width="132dp"
-        android:layout_height="48dp"
+        android:layout_width="103dp"
+        android:layout_height="46dp"
         android:background="@android:drawable/edit_text"
         android:backgroundTint="@color/lima_light"
         android:ems="10"
@@ -164,6 +164,7 @@
         android:id="@+id/etProducte"
         android:layout_width="217dp"
         android:layout_height="48dp"
+        android:autoText="false"
         android:background="@android:drawable/edit_text"
         android:backgroundTint="@color/lima_light"
         android:ems="10"
