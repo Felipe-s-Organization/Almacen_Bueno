@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">Almacen</string>
+    <string name="name">Nombre</string>
+    <string name="categorias">Categorias</string>
+    <string name="escaner">Escaner</string>
+    <string name="producto">Producto</string>
+    <string name="categoria">Categoria</string>
+    <string name="cajas">Cajas</string>
+    <string name="unidades">Unidades</string>
+    <string name="u_c">Unidades/Cajas</string>
+    <string name="codi_barras">Codigo de barras</string>
+    <string name="escanear">ESCANEAR</string>
+    <string name="precio" translatable="false">P.V.P</string>
+    <string name="moneda">€</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="confirmar">Si</string>
+    <string name="new_producto">Nuevo Producto</string>
+    <string name="new_categoria">Añadir categoria</string>
+    <string name="existencias">SIN EXISTENCIAS</string>
+    <string name="suma" translatable="false">+</string>
+    <string name="resta" translatable="false">-</string>
+    <string name="eliminar">eliminar</string>
+    <string name="buscar">Buscar</string>
+    <string name="all_productos">Todos los productos</string>
+    <string name="pregunta_eliminar">¿Seguro que quieres eliminar el producto?</string>
+    <string name="elimina_produc">Producto eliminado</string>
+    <string name="invalid_categoria">No se pudo añadir la categoria</string>
+    <string name="invalid_produc">No se ha podido guardar el producto</string>
 </resources>

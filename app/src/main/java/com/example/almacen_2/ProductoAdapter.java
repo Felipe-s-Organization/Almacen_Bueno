@@ -94,7 +94,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
         holder.tvNom.setText(item.getNom());
         holder.tvNumCajas.setText(cajas);
         holder.tvCantidad.setText(unidades);
-        holder.tvPrecio.setText((double) item.getPrecio() +"€");
+        holder.tvPrecio.setText( item.getPrecio() +"€");
     }
 
     @Override
@@ -125,17 +125,17 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
             switch (menuItem.getItemId()) {
                 case R.id.eliminarProducto:
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setMessage("Seguro que quieres eliminar el producto?")
-                            .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    builder.setMessage(R.string.pregunta_eliminar)
+                            .setPositiveButton(R.string.confirmar, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     Producto s = listaProductos.get(pos);
                                     databaseReference= FirebaseDatabase.getInstance().getReference().child("productos");
                                     databaseReference.child(s.getCodi()).removeValue();
-                                    Toast toast = Toast.makeText(context,"Producto eliminado",Toast.LENGTH_SHORT);
+                                    Toast toast = Toast.makeText(context,R.string.elimina_produc,Toast.LENGTH_SHORT);
                                     toast.show();
                                 }
-                            }).setNegativeButton("Cancelar", null).show();
+                            }).setNegativeButton(R.string.cancelar, null).show();
                 default:
             }
             return false;

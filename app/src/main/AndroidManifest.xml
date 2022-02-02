@@ -14,11 +14,11 @@
         <activity
             android:name=".Escanear"
             android:exported="false"
-            android:label="Escaner"/>
+            android:label="@string/escaner"/>
         <activity
             android:name=".ListaCategoria"
             android:exported="false"
-            android:label="Categorias"/>
+            android:label="@string/categoria"/>
         <activity
             android:name=".Afegir"
             android:exported="false" />

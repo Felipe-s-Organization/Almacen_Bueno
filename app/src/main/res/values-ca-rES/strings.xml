@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Magatzem</string>
+    <string name="name">Nom</string>
+    <string name="categorias">Categories</string>
+    <string name="escaner">Escaner</string>
+    <string name="producto">Producte</string>
+    <string name="categoria">Categoria</string>
+    <string name="cajas">Caixes</string>
+    <string name="unidades">Unitats</string>
+    <string name="u_c">Unitats/Caixes</string>
+    <string name="codi_barras">Codi de barres</string>
+    <string name="escanear">ESCANEJAR</string>
+    <string name="moneda">€</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="confirmar">Si</string>
+    <string name="new_producto">Nou Producte</string>
+    <string name="new_categoria">Afegir categoria</string>
+    <string name="existencias">SENSE EXISTENCIES</string>
+    <string name="eliminar">eliminar</string>
+    <string name="buscar">Buscar</string>
+    <string name="all_productos">Tots els productes</string>
+    <string name="pregunta_eliminar">Segur que vols eliminar el producte?</string>
+    <string name="elimina_produc">Producte eliminat</string>
+    <string name="invalid_categoria">No s\'ha pogut afegir la categoria</string>
+    <string name="invalid_produc">No s\'ha pogut guardar el producte</string>
+</resources>

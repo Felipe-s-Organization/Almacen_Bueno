@@ -143,7 +143,7 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
                     codi = nom.replace(".","");
                     dbTienda.child(codi).setValue(producto);
                 }catch (Exception e){
-                    Toast toast = Toast.makeText(this,"No se ha podido guardar el producto", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(this,R.string.invalid_produc, Toast.LENGTH_SHORT);
                     toast.show();
                 }
                 Intent intent = new Intent(this, MainActivity.class);

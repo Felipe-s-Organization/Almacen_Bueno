@@ -72,7 +72,7 @@ public class ListaCategoria extends AppCompatActivity implements ChildEventListe
                 String nombre = nomCategoria.getText().toString();
                 //Si accidentalmente le dan al botont comprueba el EditText, si esta vacio crea un toast
                 if (nombre.equals("")){
-                    Toast toast = Toast.makeText(this,"No se puede añadir la categoria",Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(this,R.string.invalid_categoria,Toast.LENGTH_SHORT);
                     toast.show();
                 }else {
                     categoria.setNom(nombre);

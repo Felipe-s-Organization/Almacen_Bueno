@@ -5,15 +5,15 @@
     tools:context=".MainActivity">
     <item
         android:id="@+id/searchView"
-        android:title="Buscar"
         android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/buscar"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="ifRoom|collapseActionView"/>
+        app:showAsAction="ifRoom|collapseActionView" />
     <item
         android:id="@+id/listaCategoria"
-        android:title="Categorias"
+        android:title="@string/categorias"
         android:visible="true" />
     <item
         android:id="@+id/todosProd"
-        android:title="Todos los productos" />
+        android:title="@string/all_productos" />
 </menu>
