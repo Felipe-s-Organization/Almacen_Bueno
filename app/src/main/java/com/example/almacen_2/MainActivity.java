@@ -145,12 +145,10 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
 
     @Override
     public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
     }
 
     @Override
     public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
     }
 
     @Override

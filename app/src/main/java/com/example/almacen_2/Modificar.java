@@ -19,6 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Map;
+
 public class Modificar extends AppCompatActivity implements View.OnClickListener, ChildEventListener, ValueEventListener {
 
     EditText tvProducto;
@@ -118,7 +120,6 @@ public class Modificar extends AppCompatActivity implements View.OnClickListener
                 edCajas.setText("0");
                 break;
             case R.id.btnGuardar:
-
                 Producto producto = new Producto();
                 producto.setCategoria(categoria);
                 producto.setNom(tvProducto.getText().toString());
@@ -126,16 +127,13 @@ public class Modificar extends AppCompatActivity implements View.OnClickListener
                 producto.setUnidades(Integer.parseInt(edUnidades.getText().toString()));
                 producto.setCantidad(cantidad);
                 producto.setPrecio(Double.parseDouble(edPrecio.getText().toString()));
+
                 dbTienda.child(getIntent().getExtras().getString("id")).removeValue();
                 dbTienda.child(getIntent().getExtras().getString("id")).setValue(producto);
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("categoria", categoria);
-                startActivity(intent);
+                onBackPressed();
                 finish();
             case R.id.btnCancelar:
-                Intent intent1 = new Intent(this, MainActivity.class);
-                intent1.putExtra("categoria", categoria);
-                startActivity(intent1);
+                onBackPressed();
                 finish();
             default:
         }

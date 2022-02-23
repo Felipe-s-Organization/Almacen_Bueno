@@ -1,5 +1,8 @@
 package com.example.almacen_2;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Producto {
     private String codi;
     private String nom;
@@ -78,4 +81,5 @@ public class Producto {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
 }

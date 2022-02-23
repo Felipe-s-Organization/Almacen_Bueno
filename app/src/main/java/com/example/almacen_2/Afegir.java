@@ -44,6 +44,7 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
     Button btnEscaner;
 
     String categoriaSelect="";
+    Producto producto;
 
     DatabaseReference dbTienda;
     DatabaseReference dbCategorias;
@@ -118,30 +119,17 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
                 Escaner();
                 break;
             case R.id.btnSave:
-                Producto producto = new Producto();
+                crearProducto();
                 try {
-                    producto.setNom(edNom.getText().toString());
-                    producto.setCategoria(categoriaSelect);
-                    producto.setCodi("");
-                    producto.setCajas(Integer.parseInt(edCajas.getText().toString()));
-                    int unidades;
-                    int cajas = Integer.parseInt(edCajas.getText().toString());
-                    int cantidad = Integer.parseInt(edCantidad.getText().toString());
-                    if (edUnidades.getText().toString().equals("")){
-                        unidades = cajas * cantidad;
-                        producto.setUnidades(unidades);
-                    }else{
-                        unidades = Integer.parseInt(edUnidades.getText().toString());
-                        int total = cajas * cantidad + unidades;
-                        producto.setUnidades(total);
-                    }
-                    producto.setCantidad(Integer.parseInt(edCantidad.getText().toString()));
-                    producto.setPrecio(Double.parseDouble(edPrecio.getText().toString()));
                     String codi;
                     String nom;
-                    nom = edNom.getText().toString();
-                    codi = nom.replace(".","");
-                    dbTienda.child(codi).setValue(producto);
+                    if (edCodi.getText().toString().equals("")){
+                        nom = edNom.getText().toString();
+                        codi = nom.replace(".","");
+                        dbTienda.child(codi).setValue(producto);
+                    }else{
+                        dbTienda.child(edCodi.getText().toString()).setValue(producto);
+                    }
                 }catch (Exception e){
                     Toast toast = Toast.makeText(this,R.string.invalid_produc, Toast.LENGTH_SHORT);
                     toast.show();
@@ -156,6 +144,30 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
                 finish();
                 break;
             default:
+        }
+    }
+
+    public void crearProducto (){
+        producto.setNom(edNom.getText().toString());
+        producto.setCategoria(categoriaSelect);
+        producto.setCodi(edCodi.getText().toString());
+        producto.setCajas(Integer.parseInt(edCajas.getText().toString()));
+        int unidades;
+        int cajas = Integer.parseInt(edCajas.getText().toString());
+        int cantidad = Integer.parseInt(edCantidad.getText().toString());
+        if (edUnidades.getText().toString().equals("")){
+            unidades = cajas * cantidad;
+            producto.setUnidades(unidades);
+        }else{
+            unidades = Integer.parseInt(edUnidades.getText().toString());
+            int total = cajas * cantidad + unidades;
+            producto.setUnidades(total);
+        }
+        producto.setCantidad(Integer.parseInt(edCantidad.getText().toString()));
+        if (edPrecio.getText().toString().equals("")){
+            producto.setPrecio(0.0);
+        }else{
+            producto.setPrecio(Double.parseDouble(edPrecio.getText().toString()));
         }
     }
 
