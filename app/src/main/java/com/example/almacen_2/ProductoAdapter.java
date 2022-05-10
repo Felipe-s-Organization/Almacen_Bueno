@@ -67,6 +67,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
             intent2.putExtra("unidades",  producto.getUnidades() );
             intent2.putExtra("precio",  producto.getPrecio() );
             intent2.putExtra("cantidad", producto.getCantidad());
+            intent2.putExtra("fecha", producto.getFecha());
             context.startActivity(intent2);
         }
 

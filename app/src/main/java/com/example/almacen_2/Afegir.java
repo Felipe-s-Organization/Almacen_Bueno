@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,7 +26,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.Result;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -44,18 +48,18 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
     Button btnEscaner;
 
     String categoriaSelect="";
-    Producto producto;
+    
 
     DatabaseReference dbTienda;
     DatabaseReference dbCategorias;
 
     private static final int CODIGO_INTENT = 2;
+    private final int MY_PERMISSONS = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_afegir);
-
         dbTienda = FirebaseDatabase.getInstance().getReference().child("productos");
         dbTienda.addValueEventListener(this);
         dbTienda.addChildEventListener(this);
@@ -119,8 +123,31 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
                 Escaner();
                 break;
             case R.id.btnSave:
-                crearProducto();
+                Producto producto = new Producto();
                 try {
+                    producto.setNom(edNom.getText().toString());
+                    producto.setCategoria(categoriaSelect);
+                    producto.setCodi(edCodi.getText().toString());
+                    producto.setCajas(Integer.parseInt(edCajas.getText().toString()));
+                    int unidades;
+                    int cajas = Integer.parseInt(edCajas.getText().toString());
+                    int cantidad = Integer.parseInt(edCantidad.getText().toString());
+                    if (edUnidades.getText().toString().equals("")){
+                        unidades = cajas * cantidad;
+                        producto.setUnidades(unidades);
+                    }else{
+                        unidades = Integer.parseInt(edUnidades.getText().toString());
+                        int total = cajas * cantidad + unidades;
+                        producto.setUnidades(total);
+                    }
+                    producto.setCantidad(cantidad);
+                    if (edPrecio.getText().toString().equals("")){
+                        producto.setPrecio(0.0);
+                    }else{
+                        producto.setPrecio(Double.parseDouble(edPrecio.getText().toString()));
+                    }
+                    String fecha = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
+                    producto.setFecha(fecha);
                     String codi;
                     String nom;
                     if (edCodi.getText().toString().equals("")){
@@ -147,7 +174,7 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
         }
     }
 
-    public void crearProducto (){
+    public void crearProducto (Producto producto){
         producto.setNom(edNom.getText().toString());
         producto.setCategoria(categoriaSelect);
         producto.setCodi(edCodi.getText().toString());
@@ -220,5 +247,14 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
     @Override
     public void onCancelled(@NonNull DatabaseError error) {
 
+    }
+
+    public boolean verificarPermiso(){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
+            return true;
+        if (checkSelfPermission(CAMERA_SERVICE) == PackageManager.PERMISSION_GRANTED)
+            return true;
+
+        return false;
     }
 }

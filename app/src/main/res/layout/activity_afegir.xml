@@ -103,7 +103,7 @@
 
     <Button
         android:id="@+id/btnEscanear"
-        android:layout_width="88dp"
+        android:layout_width="100dp"
         android:layout_height="48dp"
         android:background="@color/lima_dark"
         android:text="@string/escanear"
@@ -133,21 +133,21 @@
 
     <Button
         android:id="@+id/btnSave"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:background="@color/lima_dark"
         android:text="@string/guardar"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPVP"
         app:layout_constraintVertical_bias="0.481" />
 
     <Button
         android:id="@+id/btnCancel"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:background="@color/lima_dark"
@@ -155,14 +155,14 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.012"
-        app:layout_constraintStart_toEndOf="@+id/btnSave"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPVP"
         app:layout_constraintVertical_bias="0.481" />
 
     <EditText
         android:id="@+id/etProducte"
-        android:layout_width="217dp"
+        android:layout_width="220dp"
         android:layout_height="48dp"
         android:autoText="false"
         android:background="@android:drawable/edit_text"
@@ -229,7 +229,7 @@
         android:backgroundTint="@color/lima_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/etProducte"
         app:layout_constraintVertical_bias="0.055" />

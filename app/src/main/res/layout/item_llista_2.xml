@@ -4,12 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/back"
+    android:divider="@drawable/back"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvNom"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
         android:text="Nom"
         android:textColor="#000000"
         android:textSize="30sp"

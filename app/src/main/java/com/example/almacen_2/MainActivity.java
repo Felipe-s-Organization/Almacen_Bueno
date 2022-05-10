@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -72,8 +74,7 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu2) {
-        // Forma 1: utilitzant el main.xml
-        //Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu2, menu2);
 
         MenuItem search = menu2.findItem(R.id.searchView);
@@ -163,7 +164,8 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
                     Integer.parseInt(element.child("cajas").getValue().toString()),
                     Integer.parseInt(element.child("unidades").getValue().toString()),
                     Integer.parseInt(element.child("cantidad").getValue().toString()),
-                    Double.parseDouble(element.child("precio").getValue().toString())
+                    Double.parseDouble(element.child("precio").getValue().toString()),
+                    element.child("fecha").getValue().toString()
             );
             if (producto.getCategoria().equals(categoria)) {
                 productos.add(producto);

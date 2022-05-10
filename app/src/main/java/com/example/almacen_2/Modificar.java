@@ -19,6 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 public class Modificar extends AppCompatActivity implements View.OnClickListener, ChildEventListener, ValueEventListener {
@@ -27,6 +29,8 @@ public class Modificar extends AppCompatActivity implements View.OnClickListener
     EditText edCajas;
     EditText edUnidades;
     EditText edPrecio;
+
+    TextView tvFecha;
 
     Button btnSumar;
     Button btnSumar2;
@@ -52,6 +56,8 @@ public class Modificar extends AppCompatActivity implements View.OnClickListener
         Integer cajas = getIntent().getExtras().getInt("cajas");
         Integer unidades = getIntent().getExtras().getInt("unidades");
         Double precio = getIntent().getExtras().getDouble("precio");
+        String fecha = getIntent().getExtras().getString("fecha");
+
         tvProducto = findViewById(R.id.tvProducto2);
         tvProducto.setText(nom);
         edCajas = findViewById(R.id.edCajas);
@@ -60,6 +66,8 @@ public class Modificar extends AppCompatActivity implements View.OnClickListener
         edUnidades.setText(unidades.toString());
         edPrecio = findViewById(R.id.edPrecio);
         edPrecio.setText(precio.toString());
+        tvFecha = findViewById(R.id.tvFecha);
+        tvFecha.setText("Ultima modificacion: "+fecha);
 
         btnSumar = findViewById(R.id.btnSumar);
         btnSumar.setOnClickListener(this);
@@ -127,8 +135,8 @@ public class Modificar extends AppCompatActivity implements View.OnClickListener
                 producto.setUnidades(Integer.parseInt(edUnidades.getText().toString()));
                 producto.setCantidad(cantidad);
                 producto.setPrecio(Double.parseDouble(edPrecio.getText().toString()));
+                producto.setFecha(new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()));
 
-                dbTienda.child(getIntent().getExtras().getString("id")).removeValue();
                 dbTienda.child(getIntent().getExtras().getString("id")).setValue(producto);
                 onBackPressed();
                 finish();

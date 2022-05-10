@@ -1,5 +1,6 @@
 package com.example.almacen_2;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,12 +12,24 @@ public class Producto {
     private int unidades;
     private int cantidad;
     private double precio;
+    private String fecha;
 
 
     public Producto() {
     }
 
-    public Producto(String codi, String nom,String categoria, int cajas, int unidades, int cantidad, double precio) {
+    public Producto(String codi, String nom,String categoria, int cajas, int unidades, int cantidad, double precio, String fecha) {
+        this.codi = codi;
+        this.nom = nom;
+        this.categoria = categoria;
+        this.cajas = cajas;
+        this.unidades = unidades;
+        this.cantidad = cantidad;
+        this.precio = precio;
+        this.fecha = fecha;
+    }
+
+    public Producto(String codi, String nom, String categoria, int cajas, int unidades, int cantidad, double precio) {
         this.codi = codi;
         this.nom = nom;
         this.categoria = categoria;
@@ -80,6 +93,14 @@ public class Producto {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
 }

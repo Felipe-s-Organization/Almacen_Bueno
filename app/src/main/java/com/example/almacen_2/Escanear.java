@@ -1,9 +1,12 @@
 package com.example.almacen_2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.zxing.Result;
@@ -13,9 +16,11 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class Escanear extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView vistaScanner;
 
+
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
+
         vistaScanner = new ZXingScannerView(this);
         // Hacer que el contenido de la actividad sea el escaner
         setContentView(vistaScanner);
@@ -44,4 +49,5 @@ public class Escanear extends AppCompatActivity implements ZXingScannerView.Resu
         setResult(Activity.RESULT_OK,intent);
         finish();
     }
+
 }
