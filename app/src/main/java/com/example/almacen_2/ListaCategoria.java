@@ -1,18 +1,18 @@
 package com.example.almacen_2;
 
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -29,7 +29,7 @@ import java.util.List;
 public class ListaCategoria extends AppCompatActivity implements ChildEventListener, ValueEventListener, View.OnClickListener{
 
     public EditText nomCategoria;
-    public Button añadir;
+    public Button add;
     public RecyclerView listaCategorias;
     private List<Categoria> categorias;
     DatabaseReference dbCategorias;
@@ -44,11 +44,11 @@ public class ListaCategoria extends AppCompatActivity implements ChildEventListe
         dbCategorias = FirebaseDatabase.getInstance().getReference().child("categorias");
         dbCategorias.addChildEventListener(this);
         dbCategorias.addValueEventListener(this);
-        categorias = new ArrayList<Categoria>();
+        categorias = new ArrayList<>();
 
         adapter = new CategoriaAdapter(categorias, this, dbCategorias);
 
-        listaCategorias = (RecyclerView) findViewById(R.id.rCategoria);
+        listaCategorias = findViewById(R.id.rCategoria);
 
         listaCategorias.setHasFixedSize(true);
         listaCategorias.setLayoutManager(new LinearLayoutManager(this));
@@ -56,30 +56,28 @@ public class ListaCategoria extends AppCompatActivity implements ChildEventListe
 
         listaCategorias.setAdapter(adapter);
 
-        añadir = (Button) findViewById(R.id.añadir);
-        añadir.setOnClickListener(this);
+        add = findViewById(R.id.añadir);
+        add.setOnClickListener(this);
 
-        nomCategoria = (EditText) findViewById(R.id.nomCategoria);
+        nomCategoria = findViewById(R.id.nomCategoria);
 
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            //Creo la accion que hace el boton añadir
-            case R.id.añadir:
-                Categoria categoria = new Categoria();
-                String nombre = nomCategoria.getText().toString();
-                //Si accidentalmente le dan al botont comprueba el EditText, si esta vacio crea un toast
-                if (nombre.equals("")){
-                    Toast toast = Toast.makeText(this,R.string.invalid_categoria,Toast.LENGTH_SHORT);
-                    toast.show();
-                }else {
-                    categoria.setNom(nombre);
-                    dbCategorias.child(nombre).setValue(categoria);
-                    nomCategoria.setText("");
-                }
-            default:
+        //Creo la accion que hace el boton añadir
+        if (v.getId() == R.id.añadir) {
+            Categoria categoria = new Categoria();
+            String nombre = nomCategoria.getText().toString();
+            //Si accidentalmente le dan al botont comprueba el EditText, si esta vacio crea un toast
+            if (nombre.equals("")) {
+                Toast toast = Toast.makeText(this, R.string.invalid_categoria, Toast.LENGTH_SHORT);
+                toast.show();
+            } else {
+                categoria.setNom(nombre);
+                dbCategorias.child(nombre).setValue(categoria);
+                nomCategoria.setText("");
+            }
         }
     }
 
@@ -103,6 +101,7 @@ public class ListaCategoria extends AppCompatActivity implements ChildEventListe
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onDataChange(@NonNull DataSnapshot snapshot) {
         categorias.clear();

@@ -25,4 +25,7 @@
     <string name="elimina_produc">Producte eliminat</string>
     <string name="invalid_categoria">No s\'ha pogut afegir la categoria</string>
     <string name="invalid_produc">No s\'ha pogut guardar el producte</string>
+    <string name="valid_produc">Guardat correctament</string>
+    <string name="no_escanear">No pots fer ús del escaner si no dones permís</string>
+    <string name="permisoCamara">Si us plau permeteix que la app accedeixi a la camera</string>
 </resources>

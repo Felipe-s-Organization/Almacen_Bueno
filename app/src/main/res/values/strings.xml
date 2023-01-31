@@ -27,4 +27,7 @@
     <string name="elimina_produc">Producto eliminado</string>
     <string name="invalid_categoria">No se pudo añadir la categoria</string>
     <string name="invalid_produc">No se ha podido guardar el producto</string>
+    <string name="valid_produc">Guardado correctamente</string>
+    <string name="no_escanear">No puedes escanear si no das permiso</string>
+    <string name="permisoCamara">Por favor permite que la app acceda a la camara</string>
 </resources>

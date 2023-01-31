@@ -1,24 +1,19 @@
 package com.example.almacen_2;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.ChildEventListener;
@@ -48,18 +43,18 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
         setContentView(R.layout.activity_main);
         try {
             categoria = getIntent().getExtras().getString("categoria");
-        }catch (Exception e){
+        }catch (Exception ignored){
 
         }
 
         dbProductos = FirebaseDatabase.getInstance().getReference().child("productos");
         dbProductos.addChildEventListener(this);
         dbProductos.addValueEventListener(this);
-        productos = new ArrayList<Producto>();
+        productos = new ArrayList<>();
 
         adapter = new ProductoAdapter(productos,this,dbProductos);
 
-        viewLista = (RecyclerView) findViewById(R.id.rvLista);
+        viewLista = findViewById(R.id.rvLista);
 
         viewLista.setHasFixedSize(true);
         viewLista.setLayoutManager(new LinearLayoutManager(this));
@@ -106,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
         adapter.filterList(listaFiltrada);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem opcion_menu){
         int id=opcion_menu.getItemId();

@@ -1,5 +1,7 @@
 package com.example.almacen_2;
 
+import androidx.annotation.NonNull;
+
 public class Categoria {
     private String nom;
 
@@ -18,6 +20,7 @@ public class Categoria {
         this.nom = nom;
     }
 
+    @NonNull
     @Override
     public String toString(){
         return nom;

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,10 +20,8 @@ import java.util.List;
 
 public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaAdapter.ViewHolder> {
 
-    private View mView;
     public List<Categoria> listaCategorias;
-    public List<Categoria> listaBuscada;
-    private Context context;
+    private final Context context;
     private DatabaseReference databaseReference;
 
     public CategoriaAdapter(List<Categoria> listaCategorias, Context context, DatabaseReference databaseReference) {
@@ -61,6 +60,7 @@ public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaAdapter.View
 
 
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_llista_2, parent, false);
@@ -98,12 +98,10 @@ public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaAdapter.View
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             // Implementar cada opció del menú
-            switch (menuItem.getItemId()) {
-                case R.id.eliminarCategoria:
-                    Categoria s = listaCategorias.get(pos);
-                    databaseReference= FirebaseDatabase.getInstance().getReference().child("categorias");
-                    databaseReference.child(s.getNom()).removeValue();
-                default:
+            if (menuItem.getItemId() == R.id.eliminarCategoria) {
+                Categoria s = listaCategorias.get(pos);
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("categorias");
+                databaseReference.child(s.getNom()).removeValue();
             }
             return false;
         }

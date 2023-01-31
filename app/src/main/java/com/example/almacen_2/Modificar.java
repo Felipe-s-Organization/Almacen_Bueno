@@ -1,16 +1,15 @@
 package com.example.almacen_2;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -21,7 +20,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Map;
 
 public class Modificar extends AppCompatActivity implements View.OnClickListener, ChildEventListener, ValueEventListener {
 
@@ -53,19 +51,19 @@ public class Modificar extends AppCompatActivity implements View.OnClickListener
 
         String nom = getIntent().getExtras().getString("nom");
 
-        Integer cajas = getIntent().getExtras().getInt("cajas");
-        Integer unidades = getIntent().getExtras().getInt("unidades");
-        Double precio = getIntent().getExtras().getDouble("precio");
+        int cajas = getIntent().getExtras().getInt("cajas");
+        int unidades = getIntent().getExtras().getInt("unidades");
+        double precio = getIntent().getExtras().getDouble("precio");
         String fecha = getIntent().getExtras().getString("fecha");
 
         tvProducto = findViewById(R.id.tvProducto2);
         tvProducto.setText(nom);
         edCajas = findViewById(R.id.edCajas);
-        edCajas.setText(cajas.toString());
+        edCajas.setText(Integer.toString(cajas));
         edUnidades = findViewById(R.id.edUnidades);
-        edUnidades.setText(unidades.toString());
+        edUnidades.setText(Integer.toString(unidades));
         edPrecio = findViewById(R.id.edPrecio);
-        edPrecio.setText(precio.toString());
+        edPrecio.setText(Double.toString(precio));
         tvFecha = findViewById(R.id.tvFecha);
         tvFecha.setText("Ultima modificacion: "+fecha);
 
@@ -86,27 +84,28 @@ public class Modificar extends AppCompatActivity implements View.OnClickListener
         btnCancelar.setOnClickListener(this);
     }
 
+    @SuppressLint({"NonConstantResourceId", "SimpleDateFormat"})
     @Override
     public void onClick(View v) {
-        Integer cantidad = getIntent().getExtras().getInt("cantidad");
+        int cantidad = getIntent().getExtras().getInt("cantidad");
         String categoria = getIntent().getExtras().getString("categoria");
-        Integer uC;
+        int uC;
         Integer suma;
-        Integer resta;
+        int resta;
         switch (v.getId()){
             case R.id.btnSumar:
                 String cajas = edCajas.getText().toString();
                 uC = Integer.parseInt(edUnidades.getText().toString()) + cantidad;
                 suma = Integer.parseInt(cajas) + 1;
                 edCajas.setText(suma.toString());
-                edUnidades.setText(uC.toString());
+                edUnidades.setText(Integer.toString(uC));
                 break;
             case R.id.btnRestar:
                 String cajas2 = edCajas.getText().toString();
                 uC = Integer.parseInt(edUnidades.getText().toString()) - cantidad;
                 resta = Integer.parseInt(cajas2) - 1;
-                edCajas.setText(resta.toString());
-                edUnidades.setText(uC.toString());
+                edCajas.setText(Integer.toString(resta));
+                edUnidades.setText(Integer.toString(uC));
                 break;
             case R.id.btnSumar2:
                 String unidades = edUnidades.getText().toString();
@@ -114,14 +113,14 @@ public class Modificar extends AppCompatActivity implements View.OnClickListener
                 uC = suma / cantidad;
                 System.out.println(suma);
                 edUnidades.setText(suma.toString());
-                edCajas.setText(uC.toString());
+                edCajas.setText(Integer.toString(uC));
                 break;
             case R.id.btnRestar2:
                 String unidades2 = edUnidades.getText().toString();
                 resta = Integer.parseInt(unidades2) - 1;
                 uC = resta / cantidad;
-                edUnidades.setText(resta.toString());
-                edCajas.setText(uC.toString());
+                edUnidades.setText(Integer.toString(resta));
+                edCajas.setText(Integer.toString(uC));
                 break;
             case R.id.btnVacio:
                 edUnidades.setText("0");

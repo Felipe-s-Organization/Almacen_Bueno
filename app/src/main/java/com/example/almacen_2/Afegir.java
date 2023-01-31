@@ -1,14 +1,10 @@
 package com.example.almacen_2;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,20 +14,24 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.zxing.Result;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import java.util.Objects;
 
 public class Afegir extends AppCompatActivity implements View.OnClickListener, ChildEventListener, ValueEventListener {
 
@@ -53,8 +53,9 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
     DatabaseReference dbTienda;
     DatabaseReference dbCategorias;
 
-    private static final int CODIGO_INTENT = 2;
-    private final int MY_PERMISSONS = 100;
+    private static final int CODIGO_INTENT = 2, CODIGO_PERMISOS_CAMARA = 1;
+    private boolean permisoCamaraConcedido = false, permisoSolicitadoDesdeBoton = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +95,7 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds: snapshot.getChildren()){
-                    String nombre = ds.child("nom").getValue().toString();
+                    String nombre = Objects.requireNonNull(ds.child("nom").getValue()).toString();
                     categorias.add(new Categoria(nombre));
                 }
                 ArrayAdapter<Categoria> arrayAdapter = new ArrayAdapter<>(Afegir.this, android.R.layout.simple_dropdown_item_1line, categorias);
@@ -116,38 +117,26 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
         });
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
+
+        Toast toast;
         switch (v.getId()){
             case R.id.btnEscanear:
+                verificarYPedirPermisosDeCamara();
+                if (!permisoCamaraConcedido){
+                    toast = Toast.makeText(this, R.string.permisoCamara, Toast.LENGTH_SHORT);
+                    toast.show();
+                    permisoSolicitadoDesdeBoton = true;
+                    return;
+                }
                 Escaner();
                 break;
             case R.id.btnSave:
                 Producto producto = new Producto();
                 try {
-                    producto.setNom(edNom.getText().toString());
-                    producto.setCategoria(categoriaSelect);
-                    producto.setCodi(edCodi.getText().toString());
-                    producto.setCajas(Integer.parseInt(edCajas.getText().toString()));
-                    int unidades;
-                    int cajas = Integer.parseInt(edCajas.getText().toString());
-                    int cantidad = Integer.parseInt(edCantidad.getText().toString());
-                    if (edUnidades.getText().toString().equals("")){
-                        unidades = cajas * cantidad;
-                        producto.setUnidades(unidades);
-                    }else{
-                        unidades = Integer.parseInt(edUnidades.getText().toString());
-                        int total = cajas * cantidad + unidades;
-                        producto.setUnidades(total);
-                    }
-                    producto.setCantidad(cantidad);
-                    if (edPrecio.getText().toString().equals("")){
-                        producto.setPrecio(0.0);
-                    }else{
-                        producto.setPrecio(Double.parseDouble(edPrecio.getText().toString()));
-                    }
-                    String fecha = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
-                    producto.setFecha(fecha);
+                    crearProducto(producto);
                     String codi;
                     String nom;
                     if (edCodi.getText().toString().equals("")){
@@ -157,8 +146,10 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
                     }else{
                         dbTienda.child(edCodi.getText().toString()).setValue(producto);
                     }
+                    toast = Toast.makeText(this,R.string.valid_produc, Toast.LENGTH_SHORT);
+                    toast.show();
                 }catch (Exception e){
-                    Toast toast = Toast.makeText(this,R.string.invalid_produc, Toast.LENGTH_SHORT);
+                    toast = Toast.makeText(this,R.string.invalid_produc, Toast.LENGTH_SHORT);
                     toast.show();
                 }
                 Intent intent = new Intent(this, MainActivity.class);
@@ -174,6 +165,42 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
         }
     }
 
+    private void verificarYPedirPermisosDeCamara() {
+        int estadoDePermiso = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+        if (estadoDePermiso == PackageManager.PERMISSION_GRANTED) {
+            // En caso de que haya dado permisos ponemos la bandera en true
+            // y llamar al método
+            permisoCamaraConcedido = true;
+        } else {
+            // Si no, pedimos permisos. Ahora mira onRequestPermissionsResult
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA},
+                    CODIGO_PERMISOS_CAMARA);
+        }
+    }
+    
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case CODIGO_PERMISOS_CAMARA:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Escanear directamten solo si fue pedido desde el botón
+                    if (permisoSolicitadoDesdeBoton) {
+                        Escaner();
+                    }
+                    permisoCamaraConcedido = true;
+                } else {
+                    permisoDeCamaraDenegado();
+                }
+                break;
+        }
+    }
+
+    private void permisoDeCamaraDenegado() {
+        Toast.makeText(this, R.string.no_escanear, Toast.LENGTH_SHORT).show();
+    }
+
+    @SuppressLint("SimpleDateFormat")
     public void crearProducto (Producto producto){
         producto.setNom(edNom.getText().toString());
         producto.setCategoria(categoriaSelect);
@@ -190,15 +217,18 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
             int total = cajas * cantidad + unidades;
             producto.setUnidades(total);
         }
-        producto.setCantidad(Integer.parseInt(edCantidad.getText().toString()));
+        producto.setCantidad(cantidad);
         if (edPrecio.getText().toString().equals("")){
             producto.setPrecio(0.0);
         }else{
             producto.setPrecio(Double.parseDouble(edPrecio.getText().toString()));
         }
+        String date;
+        date = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
+        producto.setFecha(date);
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == CODIGO_INTENT) {
             if (resultCode == Activity.RESULT_OK) {
@@ -249,12 +279,4 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
 
     }
 
-    public boolean verificarPermiso(){
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
-            return true;
-        if (checkSelfPermission(CAMERA_SERVICE) == PackageManager.PERMISSION_GRANTED)
-            return true;
-
-        return false;
-    }
 }

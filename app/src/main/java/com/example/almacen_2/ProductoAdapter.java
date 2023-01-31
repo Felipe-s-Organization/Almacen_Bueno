@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,10 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHolder> {
-    private View mView;
     public List<Producto> listaProductos;
     public List<Producto> listaBuscada;
-    private Context context;
+    private final Context context;
     private DatabaseReference databaseReference;
 
     public ProductoAdapter(List<Producto> listaProductos, Context context, DatabaseReference databaseReference) {
@@ -41,8 +41,6 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
         public TextView tvNumCajas;
         public TextView tvCantidad;
         public TextView tvPrecio;
-
-        int position = getAdapterPosition();
 
         public ViewHolder (View itemView){
             super(itemView);
@@ -80,6 +78,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
         }
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_llista, parent, false);
@@ -122,22 +121,19 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             // Implementar cada opció del menú
-            Producto producto;
-            switch (menuItem.getItemId()) {
-                case R.id.eliminarProducto:
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setMessage(R.string.pregunta_eliminar)
-                            .setPositiveButton(R.string.confirmar, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    Producto s = listaProductos.get(pos);
-                                    databaseReference= FirebaseDatabase.getInstance().getReference().child("productos");
-                                    databaseReference.child(s.getCodi()).removeValue();
-                                    Toast toast = Toast.makeText(context,R.string.elimina_produc,Toast.LENGTH_SHORT);
-                                    toast.show();
-                                }
-                            }).setNegativeButton(R.string.cancelar, null).show();
-                default:
+            if (menuItem.getItemId() == R.id.eliminarProducto) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage(R.string.pregunta_eliminar)
+                        .setPositiveButton(R.string.confirmar, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Producto s = listaProductos.get(pos);
+                                databaseReference = FirebaseDatabase.getInstance().getReference().child("productos");
+                                databaseReference.child(s.getCodi()).removeValue();
+                                Toast toast = Toast.makeText(context, R.string.elimina_produc, Toast.LENGTH_SHORT);
+                                toast.show();
+                            }
+                        }).setNegativeButton(R.string.cancelar, null).show();
             }
             return false;
         }
