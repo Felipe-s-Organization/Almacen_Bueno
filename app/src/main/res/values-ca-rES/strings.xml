@@ -28,4 +28,5 @@
     <string name="valid_produc">Guardat correctament</string>
     <string name="no_escanear">No pots fer ús del escaner si no dones permís</string>
     <string name="permisoCamara">Si us plau permeteix que la app accedeixi a la camera</string>
+    <string name="no_nom">Falta el nom del producte</string>
 </resources>

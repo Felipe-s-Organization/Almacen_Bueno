@@ -135,26 +135,31 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
                 break;
             case R.id.btnSave:
                 Producto producto = new Producto();
-                try {
-                    crearProducto(producto);
-                    String codi;
-                    String nom;
-                    if (edCodi.getText().toString().equals("")){
-                        nom = edNom.getText().toString();
-                        codi = nom.replace(".","");
-                        dbTienda.child(codi).setValue(producto);
-                    }else{
-                        dbTienda.child(edCodi.getText().toString()).setValue(producto);
+                crearProducto(producto);
+                if (producto.getNom().equals("") || producto.getNom().equals(".")){
+                    Toast.makeText(this, R.string.no_nom, Toast.LENGTH_SHORT).show();
+                }else{
+                    try {
+                        String codi;
+                        String nom;
+                        if (edCodi.getText().toString().equals("")){
+                            nom = edNom.getText().toString();
+                            codi = nom.replace(".","");
+                            dbTienda.child(codi).setValue(producto);
+                        }else {
+                            dbTienda.child(edCodi.getText().toString()).setValue(producto);
+                        }
+                        toast = Toast.makeText(this,R.string.valid_produc, Toast.LENGTH_SHORT);
+                        toast.show();
+                        Intent intent = new Intent(this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }catch (Exception e){
+                        toast = Toast.makeText(this,R.string.invalid_produc, Toast.LENGTH_SHORT);
+                        toast.show();
                     }
-                    toast = Toast.makeText(this,R.string.valid_produc, Toast.LENGTH_SHORT);
-                    toast.show();
-                }catch (Exception e){
-                    toast = Toast.makeText(this,R.string.invalid_produc, Toast.LENGTH_SHORT);
-                    toast.show();
                 }
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                finish();
+
                 break;
             case R.id.btnCancel:
                 Intent intent1 = new Intent(this, MainActivity.class);
@@ -205,10 +210,19 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
         producto.setNom(edNom.getText().toString());
         producto.setCategoria(categoriaSelect);
         producto.setCodi(edCodi.getText().toString());
-        producto.setCajas(Integer.parseInt(edCajas.getText().toString()));
+        if (edCajas.getText().toString().equals("")) {
+            producto.setCajas(0);
+        }else{
+            producto.setCajas(Integer.parseInt(edCajas.getText().toString()));
+        }
         int unidades;
-        int cajas = Integer.parseInt(edCajas.getText().toString());
-        int cantidad = Integer.parseInt(edCantidad.getText().toString());
+        int cajas = producto.getCajas();
+        int cantidad;
+        if (edCajas.getText().toString().equals("")){
+            cantidad = 0;
+        }else {
+            cantidad = Integer.parseInt(edCantidad.getText().toString());
+        }
         if (edUnidades.getText().toString().equals("")){
             unidades = cajas * cantidad;
             producto.setUnidades(unidades);

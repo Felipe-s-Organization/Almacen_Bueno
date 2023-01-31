@@ -10,13 +10,15 @@
         android:layout_width="729dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="100dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nomCategoria">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rCategoria"
             android:layout_width="match_parent"
             android:layout_height="288dp"
+            android:layout_marginRight="2dp"
             android:theme="@style/Theme.Almacen_2" />
     </LinearLayout>
 
