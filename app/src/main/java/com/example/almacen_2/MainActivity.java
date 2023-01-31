@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,8 +44,8 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
         setContentView(R.layout.activity_main);
         try {
             categoria = getIntent().getExtras().getString("categoria");
-        }catch (Exception ignored){
-
+        }catch (Exception e){
+            categoria = "";
         }
 
         dbProductos = FirebaseDatabase.getInstance().getReference().child("productos");
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
 
         FloatingActionButton añadir = findViewById(R.id.floButton);
         añadir.setOnClickListener(this);
+
+
 
     }
 
@@ -148,11 +151,13 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
     public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onDataChange(@NonNull DataSnapshot snapshot) {
         productos.clear();
 
         for(DataSnapshot element : snapshot.getChildren()){
+
             Producto producto = new Producto(
                     element.getKey(),
                     element.child("nom").getValue().toString(),
@@ -166,13 +171,14 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
             if (producto.getCategoria().equals(categoria)) {
                 productos.add(producto);
                 productos = ordenar(productos);
-            }else if (categoria.equals("")){
+            }else if (categoria == "" || categoria == null){
                 productos.add(producto);
                 productos = ordenar(productos);
             }
 
 
         }
+
         viewLista.getAdapter().notifyDataSetChanged();
 
     }
