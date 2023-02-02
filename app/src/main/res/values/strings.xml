@@ -31,4 +31,5 @@
     <string name="no_escanear">No puedes escanear si no das permiso</string>
     <string name="permisoCamara">Por favor permite que la app acceda a la camara</string>
     <string name="no_nom">Falta el nombre del producto</string>
+    <string name="modify">Producto modificado</string>
 </resources>

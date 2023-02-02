@@ -8,7 +8,7 @@
 
     <EditText
         android:id="@+id/edCajas"
-        android:layout_width="63dp"
+        android:layout_width="90dp"
         android:layout_height="64dp"
         android:background="@android:drawable/edit_text"
         android:backgroundTint="@color/lima_light"
@@ -18,7 +18,7 @@
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintHorizontal_bias="0.18"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSumar"
         app:layout_constraintVertical_bias="0.033"
@@ -40,7 +40,7 @@
 
     <EditText
         android:id="@+id/edUnidades"
-        android:layout_width="63dp"
+        android:layout_width="90dp"
         android:layout_height="64dp"
         android:background="@android:drawable/edit_text"
         android:backgroundTint="@color/lima_light"
@@ -51,7 +51,7 @@
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.422"
+        app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSumar2"
         app:layout_constraintVertical_bias="0.033"

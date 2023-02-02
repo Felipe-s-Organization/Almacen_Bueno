@@ -145,6 +145,7 @@ public class Afegir extends AppCompatActivity implements View.OnClickListener, C
                         if (edCodi.getText().toString().equals("")){
                             nom = edNom.getText().toString();
                             codi = nom.replace(".","");
+                            codi = codi.split("/")[0];
                             dbTienda.child(codi).setValue(producto);
                         }else {
                             dbTienda.child(edCodi.getText().toString()).setValue(producto);

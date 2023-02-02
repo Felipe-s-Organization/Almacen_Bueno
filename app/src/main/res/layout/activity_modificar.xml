@@ -22,7 +22,7 @@
 
     <EditText
         android:id="@+id/edUnidades"
-        android:layout_width="63dp"
+        android:layout_width="90dp"
         android:layout_height="64dp"
         android:background="@android:drawable/edit_text"
         android:backgroundTint="@color/lima_light"
@@ -49,7 +49,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintHorizontal_bias="0.295"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
         app:layout_constraintVertical_bias="0.025"
@@ -65,7 +65,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.727"
+        app:layout_constraintHorizontal_bias="0.716"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
         app:layout_constraintVertical_bias="0.025"
@@ -87,7 +87,7 @@
 
     <EditText
         android:id="@+id/edCajas"
-        android:layout_width="63dp"
+        android:layout_width="90dp"
         android:layout_height="64dp"
         android:background="@android:drawable/edit_text"
         android:backgroundTint="@color/lima_light"
@@ -119,7 +119,7 @@
 
     <Button
         android:id="@+id/btnRestar2"
-        android:layout_width="62dp"
+        android:layout_width="64dp"
         android:layout_height="41dp"
         android:layout_marginTop="12dp"
         android:backgroundTint="@color/lima"
@@ -129,7 +129,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.724"
+        app:layout_constraintHorizontal_bias="0.696"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edUnidades"
         app:layout_constraintVertical_bias="0.0"
@@ -146,7 +146,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintHorizontal_bias="0.295"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edCajas"
         app:layout_constraintVertical_bias="0.031"

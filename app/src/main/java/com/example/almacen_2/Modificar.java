@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -137,6 +138,7 @@ public class Modificar extends AppCompatActivity implements View.OnClickListener
                 producto.setFecha(new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()));
 
                 dbTienda.child(getIntent().getExtras().getString("id")).setValue(producto);
+                Toast.makeText(this, R.string.modify, Toast.LENGTH_SHORT).show();
                 onBackPressed();
                 finish();
             case R.id.btnCancelar:

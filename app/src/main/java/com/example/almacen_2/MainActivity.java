@@ -29,7 +29,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ChildEventListener, ValueEventListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements ChildEventListener, ValueEventListener, View.OnClickListener, SearchView.OnQueryTextListener {
 
     private List<Producto> productos;
     public RecyclerView viewLista;
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
         SearchView searchView = (SearchView) search.getActionView();
         searchView.setQueryHint("Nombre del producto");
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        /*searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -90,7 +90,8 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
                 filter(newText);
                 return true;
             }
-        });
+        });*/
+        searchView.setOnQueryTextListener(this);
         return super.onCreateOptionsMenu(menu2);
     }
 
@@ -203,5 +204,17 @@ public class MainActivity extends AppCompatActivity implements ChildEventListene
         startActivity(home);
         moveTaskToBack(true);
         finish();
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        viewLista.getAdapter().notifyDataSetChanged();
+        filter(newText);
+        return true;
     }
 }
